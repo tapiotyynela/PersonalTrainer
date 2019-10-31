@@ -17,7 +17,6 @@ const CustomerList = () => {
                 .then(data => setCustomers(data.content))
                 .catch(err => console.error(err))
             )
-            console.log(customers);
     }
         
     const columns = [

@@ -3,10 +3,7 @@ import './App.css';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import CustomerList from './components/CustomerList';
 import TrainingList from './components/TrainingList';
 import { Route, BrowserRouter, Switch, Link } from 'react-router-dom';
@@ -29,8 +26,10 @@ function App() {
             anchor="left"
           >
             <div style={{ marginTop: 70 }}>
-              <Button to="/customers" component={Link} style={{ color: "grey" }}>Customers</Button><br/>
-              <Button to="/trainings" component={Link} style={{ color: "grey" }}>Trainings</Button>
+              <Button to="/customers" component={Link} style={{ color: "blue", marginBottom: 10 }}>Customers</Button><br/>
+              <Button to="/trainings" component={Link} style={{ color: "blue", marginBottom: 10 }}>Trainings</Button><br/>
+              <Button to="/calender" component={Link} style={{ color: "blue" }}>Calender</Button>
+
             </div>
           </Drawer>
           <div style={{textAlign: "center", marginTop: 100}}>
