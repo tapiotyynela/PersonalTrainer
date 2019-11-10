@@ -40,8 +40,8 @@ const CustomerList = () => {
                 <Grid style={{paddingTop: 11}}  item>
                 </Grid>
             </Grid>
-            <h1 style={{marginLeft: 100}}>Customers</h1>
-            <ReactTable data={customers} columns={columns} filterable={true} style={{marginLeft: 100}}/>
+            <h1>Customers</h1>
+            <ReactTable data={customers} columns={columns} filterable={true}/>
         </div>
     );
 }

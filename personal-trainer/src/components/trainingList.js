@@ -4,9 +4,8 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 var moment = require('moment');
 
-const TrainingList = () => {
+const TrainingList = (props) => {
     const [trainings, setTrainings] = React.useState([]);
-    const [date, setDate] = React.useState('');
 
     React.useEffect(() => {
         fetchTrainings();
@@ -15,14 +14,23 @@ const TrainingList = () => {
     const fetchTrainings = () => {
         fetch('https://customerrest.herokuapp.com/api/trainings')
             .then(response => response.json()
-                .then(data => setTrainings(data.content))
-                .catch(err => console.error(err))
-            )
-    }
+            .then(data => {
+                const formattedTrainigs = data.content.map(item => {
+                    const container = {};
+                    container.date = moment(item.date).format('LLL')
+                    container.duration = item.duration;
+                    container.activity = item.activity;
+                    return container;
+                });
+                console.table(formattedTrainigs);
+                setTrainings(formattedTrainigs);
+            }
+                )
+            .catch(err => console.error(err))
+            )}
 
     const columns = [
         {
-            
             Header: 'Date',
             id: 1,
             accessor:'date'
@@ -44,8 +52,8 @@ const TrainingList = () => {
                 <Grid style={{paddingTop: 11}}  item>
                 </Grid>
             </Grid>
-            <h1 style={{marginLeft: 100}}>Trainings</h1>
-            <ReactTable data={trainings} columns={columns} filterable={true} style={{marginLeft: 100}}/>
+            <h1>Trainings</h1>
+            <ReactTable data={trainings} date={trainings.date} columns={columns} filterable={true}/>
         </div>
     );
 };
