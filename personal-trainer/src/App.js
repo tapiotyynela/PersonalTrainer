@@ -28,11 +28,11 @@ function App(props) {
     <div style={{width: 200}}>
       <div />
       <Divider />
-      <Button to="/" onClick={handleDrawerToggle} component={Link} style={{ color: "blue", marginBottom: 10, marginLeft: 40, marginTop: 70 }}>Customers</Button><br />
+      <Button to="/" onClick={handleDrawerToggle} component={Link} style={{ color: "blue", marginBottom: 10, marginLeft: 35, marginTop: 70 }}>Customers</Button><br />
       <Divider />
-      <Button to="/trainings" onClick={handleDrawerToggle} component={Link} style={{ color: "blue", marginBottom: 10, marginLeft: 40 }}>Trainings</Button><br />
+      <Button to="/trainings" onClick={handleDrawerToggle} component={Link} style={{ color: "blue", marginBottom: 10, marginTop: 10,  marginLeft: 40 }}>Trainings</Button><br />
       <Divider />
-      <Button to="/calender" onClick={handleDrawerToggle} component={Link} style={{ color: "blue", marginLeft: 40 }}>Calender</Button>
+      <Button to="/calender" onClick={handleDrawerToggle} component={Link} style={{ color: "blue", marginLeft: 40, marginTop: 10 }}>Calender</Button>
     </div>
   );
 

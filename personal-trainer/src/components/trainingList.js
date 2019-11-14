@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import ReactTable from 'react-table';
+import Button from '@material-ui/core/Button';
 import 'react-table/react-table.css';
 var moment = require('moment');
 
@@ -52,8 +53,21 @@ const TrainingList = (props) => {
                 <Grid style={{paddingTop: 11}}  item>
                 </Grid>
             </Grid>
-            <h1>Trainings</h1>
-            <ReactTable data={trainings} date={trainings.date} columns={columns} filterable={true}/>
+            <h1 align="left">Trainings</h1>
+            <Button
+                    style={{marginRight: 200,
+                            marginBottom: 20}}
+                    size="large"
+                    color="primary"
+                    variant="outlined"
+            >Add new</Button>
+            <ReactTable
+                data={trainings}
+                date={trainings.date}
+                columns={columns}
+                filterable={true}
+                style={{width: "47%"}}
+                />
         </div>
     );
 };
