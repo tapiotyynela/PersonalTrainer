@@ -10,7 +10,7 @@ const CustomerDetails = (props) => {
     const [open, setOpen] = React.useState(false);
     const [customer, setCustomer] = React.useState(
         {
-            streetaddress: '', postcode: '', city: '', email: '', phone: ''
+            streeraddress: '', postcode: '', city: '', email: '', phone: ''
         }
 
     )

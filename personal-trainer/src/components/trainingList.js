@@ -21,19 +21,27 @@ const TrainingList = (props) => {
                     container.date = moment(item.date).format('LLL')
                     container.duration = item.duration;
                     container.activity = item.activity;
+                    container.href = item.links[0].href;
                     return container;
                 });
-                console.table(formattedTrainigs);
                 setTrainings(formattedTrainigs);
             }
                 )
             .catch(err => console.error(err))
             )}
 
+            const deleteTraining = (link) => {
+                console.log(link);
+                if (window.confirm('Are you sure?')) {
+                    fetch(link, { method: 'DELETE' })
+                        .then(res => fetchTrainings())
+                        .catch(err => console.error(err))
+                }
+            }
+
     const columns = [
         {
             Header: 'Date',
-            id: 1,
             accessor:'date'
                 
         },
@@ -44,8 +52,18 @@ const TrainingList = (props) => {
         {
             Header: 'Activity',
             accessor: 'activity'
+        },
+        {
+            accessor: 'href',
+            filterable: false,
+            sortable: false,
+            Cell: ({ value }) => <Button size="small" color="secondary" onClick={() => deleteTraining(value)}>Delete</Button>
         }
     ]
+
+    const logger = () => {
+        console.log(trainings)
+    }
 
     return (
         <div>
@@ -54,19 +72,18 @@ const TrainingList = (props) => {
                 </Grid>
             </Grid>
             <h1 align="left">Trainings</h1>
+            <div align="left">
             <Button
-                    style={{marginRight: 200,
-                            marginBottom: 20}}
+                    style={{marginBottom: 20, marginLeft: 20}}
                     size="large"
                     color="primary"
                     variant="outlined"
             >Add new</Button>
+            </div>
             <ReactTable
                 data={trainings}
-                date={trainings.date}
                 columns={columns}
                 filterable={true}
-                style={{width: "47%"}}
                 />
         </div>
     );
