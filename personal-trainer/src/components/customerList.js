@@ -37,6 +37,19 @@ const CustomerList = () => {
             .catch(err => console.error(err))
     }
 
+    const editCustomer = (customer, link) => {
+        fetch(link, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(customer)
+        })
+            .then(res => fetchCustomers())
+            .catch(err => console.error(err))
+
+    }
+
     const deleteCustomer = (link) => {
         if (window.confirm('Are you sure?')) {
                 fetch(link, { method: 'DELETE' })
@@ -57,7 +70,7 @@ const CustomerList = () => {
         {
             filterable: false,
             sortable: false,
-            Cell: row => <EditCustomer/>
+            Cell: row => <EditCustomer customer={row.original} updateCustomer={editCustomer}/>
         },
         {
             filterable: false,
@@ -74,7 +87,7 @@ const CustomerList = () => {
     ]
 
     return (
-        <div class="customers">
+        <div className="customers">
             <Grid container>
                 <Grid style={{paddingTop: 11}}  item>
                 </Grid>

@@ -35,7 +35,6 @@ const AddCustomer = (props) => {
             
                 <TextField
                     id="outlined-basic"
-                    label="Outlined"
                     margin="normal"
                     variant="outlined"
                     style={{marginBottom: 15}}
@@ -46,7 +45,6 @@ const AddCustomer = (props) => {
                 /> <br/>
                 <TextField
                     id="outlined-basic"
-                    label="Outlined"
                     margin="normal"
                     variant="outlined"
                     style={{marginBottom: 15}}
@@ -57,7 +55,6 @@ const AddCustomer = (props) => {
                 /> <br/>
                 <TextField
                     id="outlined-basic"
-                    label="Outlined"
                     margin="normal"
                     variant="outlined"
                     style={{marginBottom: 15}}
@@ -68,7 +65,6 @@ const AddCustomer = (props) => {
                 /> <br/>
                 <TextField
                     id="outlined-basic"
-                    label="Outlined"
                     margin="normal"
                     variant="outlined"
                     style={{marginBottom: 15}}
@@ -79,7 +75,6 @@ const AddCustomer = (props) => {
                 /> <br/>
                 <TextField
                     id="outlined-basic"
-                    label="Outlined"
                     margin="normal"
                     variant="outlined"
                     style={{marginBottom: 15}}
@@ -90,7 +85,6 @@ const AddCustomer = (props) => {
                 /> <br/>
                 <TextField
                     id="outlined-basic"
-                    label="Outlined"
                     margin="normal"
                     variant="outlined"
                     style={{marginBottom: 15}}
@@ -101,7 +95,6 @@ const AddCustomer = (props) => {
                 /> <br/>
                 <TextField
                     id="outlined-basic"
-                    label="Outlined"
                     margin="normal"
                     variant="outlined"
                     style={{marginBottom: 15}}
