@@ -2,22 +2,28 @@ import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import AddCustomerToTraining from '../components/AddCustomerToTraining';
-
+import PersonIcon from '@material-ui/icons/Person';
 import '../App.css';
+
 var moment = require('moment');
 
 const AddTraining = (props) => {
     const [state, setState] = React.useState({
         left: false,
     });
-    const [open, setOpen] = React.useState(false);
     const [training, setTraining] = React.useState(
         {
             date: new Date(), duration: '', activity: '', customer: ''
         }
     )
+    const [open1, setOpen1] = React.useState(false);
     const [customers, setCustomers] = React.useState([]);
 
     const fetchCustomers = () => {
@@ -37,19 +43,24 @@ const AddTraining = (props) => {
     }
 
     const handleClickOpen = () => {
-        setOpen(true);
+        setOpen1(true);
         fetchCustomers();
-      };
-    
-      const handleClose = value => {
-        setOpen(false);
-      };
+    };
+
+    const handleClose = value => {
+        setOpen1(false);
+    };
+
+    const handleListItemClick = value => {
+        setTraining({...training, customer: value.links[0].href })
+        alert('Added customer ' + value.firstname + ' ' + value.lastname + ' to this training');
+        handleClose();
+    };
 
     const addTraining = () => {
         training.date = moment(training.date).format();
         props.saveTraining(training);
         setState({ ...state, 'left': false });
-        console.log(training);
     }
 
     const fullList = side => (
@@ -89,10 +100,23 @@ const AddTraining = (props) => {
             /> <br />
             <br />
             <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Add customer
-            </Button>
-            <AddCustomerToTraining open={open} onClose={handleClose} allcustomers={customers}/>
-            <br />
+                Add customer to this training
+            </Button> <br />
+            <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open1}>
+                <DialogTitle id="simple-dialog-title">Customers</DialogTitle>
+                <List>
+                    {customers.map(customer => (
+                    <ListItem button onClick={() => handleListItemClick(customer)} key={customer}>
+                    <ListItemAvatar>
+                        <Avatar>
+                            <PersonIcon/>
+                        </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary={customer.firstname + " " + customer.lastname} />
+                    </ListItem>
+                    ))}
+                </List>
+            </Dialog><br />
             <Button onClick={addTraining} color="primary" variant="outlined" style={{ marginRight: 10 }}>
                 Save
                 </Button>
