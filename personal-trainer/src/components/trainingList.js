@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import ReactTable from 'react-table';
 import Button from '@material-ui/core/Button';
 import AddTraining from '../components/AddTraining';
+import EditTraining from '../components/EditTraining';
 import 'react-table/react-table.css';
 var moment = require('moment');
 
@@ -30,6 +31,19 @@ const TrainingList = (props) => {
                 )
                 .catch(err => console.error(err))
             )
+    }
+
+    const editTraining = (training, link) => {
+        fetch(link, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(training)
+        })
+            .then(res => fetchTrainings())
+            .catch(err => console.error(err))
+
     }
 
     const deleteTraining = (link) => {
@@ -69,6 +83,11 @@ const TrainingList = (props) => {
         {
             Header: 'Activity',
             accessor: 'activity'
+        },
+        {
+            filterable: false,
+            sortable: false,
+            Cell: row => <EditTraining training={row.original} updateTraining={editTraining}/>
         },
         {
             accessor: 'href',
